@@ -29,7 +29,7 @@ public class WeaponController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1))
         {
-            AudioSource.PlayClipAtPoint(changeSound, Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(changeSound,transform.position);
             currentNum = (currentNum + 1) % weapons.Length;
             for(int i = 0; i < weapons.Length; i++)
             {

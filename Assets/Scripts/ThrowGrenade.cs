@@ -22,7 +22,7 @@ public class ThrowGrenade : MonoBehaviour
             GameObject grenade = Instantiate(grenadePrefab, transform.position, Quaternion.identity);
             Rigidbody grenadeRb = grenade.GetComponent<Rigidbody>();
             grenadeRb.AddForce(transform.forward * throwSpeed);
-            AudioSource.PlayClipAtPoint(throwSound, Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(throwSound,transform.position);
         }
     }
 }

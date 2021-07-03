@@ -20,6 +20,6 @@ public class DestroyGrenade : MonoBehaviour
         Destroy(gameObject);
         GameObject effect = Instantiate(effectPrefab, transform.position, Quaternion.identity);
         Destroy(effect, 1.0f);
-        AudioSource.PlayClipAtPoint(effectSound, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(effectSound,transform.position);
     }
 }
