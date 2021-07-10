@@ -6,12 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public int enemyHP;
     public AudioClip audioClip;
-
-    private void Start()
-    {
-
-    }
-
+    public GameObject effectprefab;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -22,6 +17,8 @@ public class EnemyHealth : MonoBehaviour
             if(enemyHP < 0)
             {
                 enemyHP = 0;
+                Destroy(gameObject);
+                Instantiate(effectprefab, transform.position, Quaternion.identity);
             }
         }
     }

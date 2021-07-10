@@ -12,8 +12,6 @@ public class DestroyBullet : MonoBehaviour
         if(other.gameObject.tag == "Bullet")
         {
             Destroy(other.gameObject);
-            Debug.Log(other.contacts.Length);
-
             foreach(ContactPoint contactPoint in other.contacts)
             {
                 GameObject effect = Instantiate(effectPrefab, contactPoint.point,Quaternion.identity);
