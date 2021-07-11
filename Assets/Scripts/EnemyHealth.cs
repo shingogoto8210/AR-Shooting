@@ -7,7 +7,13 @@ public class EnemyHealth : MonoBehaviour
     public int enemyHP;
     public AudioClip audioClip;
     public GameObject effectprefab;
+    public int point;
+    private GameMaster gameMaster;
 
+    private void Start()
+    {
+        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+    }
     private void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Bullet")
@@ -19,6 +25,7 @@ public class EnemyHealth : MonoBehaviour
                 enemyHP = 0;
                 Destroy(gameObject);
                 Instantiate(effectprefab, transform.position, Quaternion.identity);
+                gameMaster.Score(point);
             }
         }
     }

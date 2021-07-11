@@ -5,8 +5,6 @@ using UnityEngine;
 public class DestroyBullet : MonoBehaviour
 {
     public GameObject effectPrefab;
-
-
     private void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Bullet")

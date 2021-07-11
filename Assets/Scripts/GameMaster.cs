@@ -7,6 +7,7 @@ public class GameMaster : MonoBehaviour
     private float counttimer;
     public float timer;
     public bool isPlaying;
+    public int score;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,5 +35,10 @@ public class GameMaster : MonoBehaviour
             Debug.Log("finish");
             isPlaying = false;
         }
+    }
+
+    public void Score(int point)
+    {
+        score += point;
     }
 }
