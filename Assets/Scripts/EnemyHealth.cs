@@ -16,7 +16,7 @@ public class EnemyHealth : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Bullet")
+        if(other.gameObject.tag == "Bullet" && gameMaster.isPlaying == true)
         {
             enemyHP -= 1;
             AudioSource.PlayClipAtPoint(audioClip,other.transform.position);

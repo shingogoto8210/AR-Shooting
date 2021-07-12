@@ -11,19 +11,28 @@ public class ShotBullet : MonoBehaviour
     public int shotCount = 30;
     private float shotInterval;
     public GameObject effectPrefab;
+    private GameMaster gameMaster;
 
+    private void Start()
+    {
+        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+    }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Mouse0))
+        Shot();
+    }
+    public void Shot()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && gameMaster.isPlaying == true)
         {
-            shotInterval += 1;
+            //shotInterval += 1;
 
-            if(shotInterval % 5 == 0 && shotCount > 0)
+            if (/*shotInterval % 5 == 0 && */shotCount > 0)
             {
                 shotCount -= 1;
 
-                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.parent.eulerAngles.x+90, transform.parent.eulerAngles.y, 0)) ;
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.parent.eulerAngles.x + 90, transform.parent.eulerAngles.y, 0));
                 Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                 bulletRb.AddForce(transform.forward * shotSpeed);
                 Destroy(bullet, 3.0f);
@@ -32,10 +41,11 @@ public class ShotBullet : MonoBehaviour
                 Destroy(effect, 0.5f);
             }
         }
-        else if(Input.GetKeyDown(KeyCode.R))
-        {
+    }
+
+    public void Reload()
+    {
             shotCount = 30;
             AudioSource.PlayClipAtPoint(reloadSound, transform.position);
-        }
     }
 }

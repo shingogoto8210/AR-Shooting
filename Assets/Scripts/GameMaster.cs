@@ -24,8 +24,8 @@ public class GameMaster : MonoBehaviour
     }
     void CountDown()
     {
-        counttimer++;
-        if (counttimer % 60 == 0)
+        counttimer += Time.deltaTime;
+        if (counttimer >= 1.0)
         {
             timer--;
             counttimer = 0;
