@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
         {
             enemyHP -= 1;
             AudioSource.PlayClipAtPoint(audioClip,other.transform.position);
-            if(enemyHP < 0)
+            if(enemyHP <= 0)
             {
                 enemyHP = 0;
                 Destroy(gameObject);

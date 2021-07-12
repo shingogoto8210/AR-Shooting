@@ -9,7 +9,7 @@ public class ShotBullet : MonoBehaviour
     public AudioClip reloadSound;
     public float shotSpeed;
     public int shotCount = 30;
-    private float shotInterval;
+    //private float shotInterval;
     public GameObject effectPrefab;
     private GameMaster gameMaster;
 
