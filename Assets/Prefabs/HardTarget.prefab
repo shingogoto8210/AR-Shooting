@@ -418,7 +418,7 @@ Transform:
   m_GameObject: {fileID: 5971931495532113597}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.05, y: -0.42, z: 0.41}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4107874362514661608}
   m_Father: {fileID: 0}
@@ -503,6 +503,9 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: fae8997185c54dd43868787435da710d, type: 3}
   effectprefab: {fileID: 100006, guid: a2b9ce854d0a5004cba27ab45cbfe205, type: 3}
   point: 300
+  itemPrefabs:
+  - {fileID: 4164530000482254777, guid: 1b6f42db199375a4b83a2acf22442d43, type: 3}
+  - {fileID: 2968590013056020118, guid: e7061935c357ae54ea4ca47e93415bf7, type: 3}
 --- !u!114 &5971931495532113594
 MonoBehaviour:
   m_ObjectHideFlags: 0

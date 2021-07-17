@@ -114,6 +114,8 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: fae8997185c54dd43868787435da710d, type: 3}
   effectprefab: {fileID: 100006, guid: a2b9ce854d0a5004cba27ab45cbfe205, type: 3}
   point: 200
+  itemPrefabs:
+  - {fileID: 4164530000482254777, guid: 1b6f42db199375a4b83a2acf22442d43, type: 3}
 --- !u!114 &5970066836405970343
 MonoBehaviour:
   m_ObjectHideFlags: 0

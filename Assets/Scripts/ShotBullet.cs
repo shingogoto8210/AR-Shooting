@@ -9,9 +9,11 @@ public class ShotBullet : MonoBehaviour
     public AudioClip reloadSound;
     public float shotSpeed;
     public int shotCount = 30;
-    //private float shotInterval;
+    private float shotInterval;
     public GameObject effectPrefab;
     private GameMaster gameMaster;
+    public bool isRapid;
+    private float rapidTime;
 
     private void Start()
     {
@@ -24,14 +26,12 @@ public class ShotBullet : MonoBehaviour
     }
     public void Shot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && gameMaster.isPlaying == true)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && gameMaster.isPlaying == true && isRapid == false)
         {
-            //shotInterval += 1;
 
-            if (/*shotInterval % 5 == 0 && */shotCount > 0)
+            if (shotCount > 0)
             {
                 shotCount -= 1;
-
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.parent.eulerAngles.x + 90, transform.parent.eulerAngles.y, 0));
                 Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                 bulletRb.AddForce(transform.forward * shotSpeed);
@@ -41,11 +41,40 @@ public class ShotBullet : MonoBehaviour
                 Destroy(effect, 0.5f);
             }
         }
+        if (Input.GetKey(KeyCode.Mouse0) && gameMaster.isPlaying == true && isRapid == true)
+        {
+            shotInterval += 1;
+            rapidTime += Time.deltaTime;
+            if (rapidTime < 10)
+            {
+                if (shotInterval % 5 == 0)
+                {
+                    shotCount -= 1;
+                    GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.parent.eulerAngles.x + 90, transform.parent.eulerAngles.y, 0));
+                    Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+                    bulletRb.AddForce(transform.forward * shotSpeed);
+                    Destroy(bullet, 3.0f);
+                    AudioSource.PlayClipAtPoint(shotSound, transform.position);
+                    GameObject effect = Instantiate(effectPrefab, transform.position, Quaternion.identity);
+                    Destroy(effect, 0.5f);
+                }
+            }
+            else if (rapidTime >= 10)
+            {
+                isRapid = false;
+                rapidTime = 0;
+            }
+        }
     }
 
     public void Reload()
     {
             shotCount = 30;
             AudioSource.PlayClipAtPoint(reloadSound, transform.position);
+    }
+
+    public void Rapid()
+    {
+        isRapid = true;
     }
 }
