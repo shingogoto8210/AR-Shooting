@@ -8,16 +8,21 @@ public class GameMaster : MonoBehaviour
     public float timer;
     public bool isPlaying;
     public int score;
-    // Start is called before the first frame update
+    public GameState currentGameState;
+
     void Start()
     {
-        isPlaying = true;
+        //isPlaying = true;
+        currentGameState = GameState.準備中; 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(isPlaying == true)
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            currentGameState = GameState.プレイ中;
+        }
+        if(currentGameState == GameState.プレイ中)
         {
             CountDown();
         }
@@ -33,7 +38,8 @@ public class GameMaster : MonoBehaviour
         if (timer <= 0)
         {
             Debug.Log("finish");
-            isPlaying = false;
+            //isPlaying = false;
+            currentGameState = GameState.ゲーム終了;
         }
     }
 

@@ -19,14 +19,13 @@ public class ShotBullet : MonoBehaviour
     {
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
     }
-    // Update is called once per frame
     void Update()
     {
         Shot();
     }
     public void Shot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && gameMaster.isPlaying == true && isRapid == false)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && gameMaster.currentGameState == GameState.プレイ中 && isRapid == false)
         {
 
             if (shotCount > 0)
@@ -41,7 +40,7 @@ public class ShotBullet : MonoBehaviour
                 Destroy(effect, 0.5f);
             }
         }
-        if (Input.GetKey(KeyCode.Mouse0) && gameMaster.isPlaying == true && isRapid == true)
+        if (Input.GetKey(KeyCode.Mouse0) && gameMaster.currentGameState == GameState.プレイ中 && isRapid == true)
         {
             shotInterval += 1;
             rapidTime += Time.deltaTime;
@@ -49,7 +48,6 @@ public class ShotBullet : MonoBehaviour
             {
                 if (shotInterval % 5 == 0)
                 {
-                    shotCount -= 1;
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.parent.eulerAngles.x + 90, transform.parent.eulerAngles.y, 0));
                     Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                     bulletRb.AddForce(transform.forward * shotSpeed);

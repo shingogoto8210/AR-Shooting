@@ -116,6 +116,7 @@ MonoBehaviour:
   point: 100
   itemPrefabs:
   - {fileID: 4164530000482254777, guid: 1b6f42db199375a4b83a2acf22442d43, type: 3}
+  - {fileID: 4758834142756087711, guid: 56e0d661336db2342bfb2286491e6681, type: 3}
 --- !u!114 &392054181605934658
 MonoBehaviour:
   m_ObjectHideFlags: 0

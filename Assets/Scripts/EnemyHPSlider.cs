@@ -8,7 +8,7 @@ public class EnemyHPSlider : MonoBehaviour
     private Slider slider;
     private int eHP;
     private GameObject enemyCanvas;
-    // Start is called before the first frame update
+
     void Start()
     {
         eHP = transform.root.gameObject.GetComponent<EnemyHealth>().enemyHP;
@@ -19,7 +19,6 @@ public class EnemyHPSlider : MonoBehaviour
         enemyCanvas = transform.parent.gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
         eHP = transform.root.gameObject.GetComponent<EnemyHealth>().enemyHP;

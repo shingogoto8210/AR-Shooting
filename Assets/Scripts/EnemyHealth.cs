@@ -19,7 +19,7 @@ public class EnemyHealth : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Bullet" && gameMaster.isPlaying == true)
+        if(other.gameObject.tag == "Bullet" && gameMaster.currentGameState == GameState.プレイ中)
         {
             enemyHP -= 1;
             AudioSource.PlayClipAtPoint(audioClip,other.transform.position);
@@ -38,10 +38,6 @@ public class EnemyHealth : MonoBehaviour
                 }
                 if(itemNumber < 10)
                 {
-                    if(itemPrefabs[1] == null)
-                    {
-                        return;
-                    }
                     reloadItem = Instantiate(itemPrefabs[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Quaternion.identity);
                     Destroy(reloadItem, 3.0f);
                 }

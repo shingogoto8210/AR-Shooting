@@ -9,18 +9,15 @@ public class GenerateTarget : MonoBehaviour
     private int timer;
     private GameMaster gameMaster;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         timer++;
-        if (timer % 60 == 0 && gameMaster.isPlaying == true)
+        if (timer % 60 == 0 && gameMaster.currentGameState == GameState.ƒvƒŒƒC’†)
         { 
         float x = Random.Range(-3, 3);
         float z = Random.Range(0, 5);
