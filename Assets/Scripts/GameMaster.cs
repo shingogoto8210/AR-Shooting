@@ -6,29 +6,36 @@ public class GameMaster : MonoBehaviour
 {
     private float counttimer;
     public float timer;
+    public float limitTimer;
     public bool isPlaying;
     public int score;
     public GameState currentGameState;
+    public RailMoveController move;
 
     void Start()
     {
         //isPlaying = true;
-        currentGameState = GameState.準備中; 
+        currentGameState = GameState.準備中;
+        timer = limitTimer;
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            currentGameState = GameState.プレイ中;
+            move.Move();
+            currentGameState = GameState.移動中;
         }
         if(currentGameState == GameState.プレイ中)
         {
             CountDown();
         }
+            //Debug.Log(counttimer);
+        
     }
     void CountDown()
     {
+        
         counttimer += Time.deltaTime;
         if (counttimer >= 1.0)
         {
@@ -38,8 +45,19 @@ public class GameMaster : MonoBehaviour
         if (timer <= 0)
         {
             Debug.Log("finish");
+            if(move.isLast == true)
+            {
+                currentGameState = GameState.ゲーム終了;
+            }
             //isPlaying = false;
-            currentGameState = GameState.ゲーム終了;
+            else if (move.isLast == false)
+            {
+                currentGameState = GameState.移動中;
+            }
+            move.ResumeMove();
+
+            Debug.Log(currentGameState);
+            timer = limitTimer;
         }
     }
 

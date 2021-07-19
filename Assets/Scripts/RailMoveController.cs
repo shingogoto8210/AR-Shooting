@@ -5,8 +5,10 @@ using DG.Tweening;
 
 public class RailMoveController : MonoBehaviour
 {
+    public GameMaster gameMaster;
     [SerializeField]
     private Transform railMoveTarget;
+    //レールを移動させる対象。AR用のカメラを指定
     //DOTweenはTransform型
 
     [SerializeField]
@@ -14,22 +16,24 @@ public class RailMoveController : MonoBehaviour
     //PathSetsをアサイン
 
     private Tween tween;
+
+    public bool isLast;
+    
     //DOTweenを動かすクラス
     //DOTweenを一時停止，再開の処理ができる
 
-    void Start()
+    /// <summary>
+    /// レール移動の開始
+    /// </summary>
+    /// <returns></returns>
+    public void Move()
     {
-        StartCoroutine(StartRailMove());    
-    }
-
-    public IEnumerator StartRailMove()
-    {
-        yield return null;
-        //1フレーム待つ
-
+        //移動する地点を取得するための配列の初期化 ※箱を準備
         Vector3[] paths = new Vector3[currentRailPathData.GetPathTrans().Length];
+        
         float totalTime = 0;
 
+        //移動する位置情報と時間を順番に配列に取得
         for(int i=0; i < currentRailPathData.GetPathTrans().Length; i++)
         {
             paths[i] = currentRailPathData.GetPathTrans()[i].position;
@@ -39,12 +43,41 @@ public class RailMoveController : MonoBehaviour
         //Linear 一定速度
         //ラムダ式　引数　＝＞　左の引数を受けてメソッド実行　※即席メソッド（スコープが短い）
         //＝＞　メソッドが隠れている　右側のメソッドを呼び出す
-        tween = railMoveTarget.DOPath(paths, totalTime).SetEase(Ease.Linear).OnWaypointChange((waypointIndex) => CheckArrivalDestination(waypointIndex));
-        Debug.Log("移動時間");
+        //パスによる移動開始
+        //DOPath(Vector3[],ゴールまでの時間)
+
+            tween = railMoveTarget.DOPath(paths, totalTime).SetEase(Ease.Linear).OnWaypointChange((waypointIndex) => CheckArrivalDestination(waypointIndex));
+            Debug.Log("移動開始");
+        
     }
 
+    //パスの目標地点に到着するたびに実行される
     private void CheckArrivalDestination(int waypointIndex)
     {
+        //Debug.Log("Index" + waypointIndex);
         Debug.Log("目標地点　到着　：" + waypointIndex + "番目");
+        PauseMove();
+        gameMaster.currentGameState = GameState.プレイ中;
+        Debug.Log(gameMaster.currentGameState);
+        if (waypointIndex == currentRailPathData.GetPathTrans().Length - 1)
+        {
+            isLast = true;
+        }
+        Debug.Log(isLast);
+        //TODO　次の移動先があるか判定
+        //TODO　射的ゲームが開始するか判定
+        //TODO　最終目的地到着の確認
+    }
+
+    public void PauseMove()
+    {
+        tween.Pause();
+    }
+
+    public void ResumeMove()
+    {
+
+            tween.Play();
+        
     }
 }

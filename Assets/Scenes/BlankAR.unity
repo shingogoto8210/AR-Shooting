@@ -578,7 +578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752273571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.23, z: -1.973}
+  m_LocalPosition: {x: -39.5, y: 2.318, z: -56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 298061922}
@@ -768,7 +768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919108989}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.23, z: 49}
+  m_LocalPosition: {x: -20.3, y: 2.23, z: -14.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 298061922}
@@ -1092,8 +1092,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9da68e2e87db849a879b131732f89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMaster: {fileID: 1569806495}
   railMoveTarget: {fileID: 1237541367}
   currentRailPathData: {fileID: 298061921}
+  isLast: 0
 --- !u!4 &1237541367
 Transform:
   m_ObjectHideFlags: 0
@@ -1102,7 +1104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237541364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0846813, y: 2.318, z: -2.42}
+  m_LocalPosition: {x: -39.5, y: 2.318, z: -56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4013781881057525069}
@@ -1142,10 +1144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03673448b2311341a93badce0ad59a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 30
+  timer: 3
+  limitTimer: 3
   isPlaying: 0
   score: 0
   currentGameState: 0
+  move: {fileID: 1237541365}
 --- !u!4 &1569806496
 Transform:
   m_ObjectHideFlags: 0
@@ -1223,7 +1227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628479018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -64.4, y: 2.23, z: -1.973}
+  m_LocalPosition: {x: -4.5, y: 2.23, z: 43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 298061922}
