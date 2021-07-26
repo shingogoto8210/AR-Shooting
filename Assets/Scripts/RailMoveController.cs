@@ -43,7 +43,6 @@ public class RailMoveController : MonoBehaviour
         //Linear 一定速度
         //ラムダ式　引数　＝＞　左の引数を受けてメソッド実行　※即席メソッド（スコープが短い）
         //＝＞　メソッドが隠れている　右側のメソッドを呼び出す
-        //パスによる移動開始
         //DOPath(Vector3[],ゴールまでの時間)
 
             tween = railMoveTarget.DOPath(paths, totalTime).SetEase(Ease.Linear).OnWaypointChange((waypointIndex) => CheckArrivalDestination(waypointIndex));
@@ -51,10 +50,8 @@ public class RailMoveController : MonoBehaviour
         
     }
 
-    //パスの目標地点に到着するたびに実行される
     private void CheckArrivalDestination(int waypointIndex)
     {
-        //Debug.Log("Index" + waypointIndex);
         Debug.Log("目標地点　到着　：" + waypointIndex + "番目");
         PauseMove();
         gameMaster.currentGameState = GameState.プレイ中;
@@ -64,9 +61,7 @@ public class RailMoveController : MonoBehaviour
             isLast = true;
         }
         Debug.Log(isLast);
-        //TODO　次の移動先があるか判定
         //TODO　射的ゲームが開始するか判定
-        //TODO　最終目的地到着の確認
     }
 
     public void PauseMove()
@@ -75,9 +70,7 @@ public class RailMoveController : MonoBehaviour
     }
 
     public void ResumeMove()
-    {
-
+    { 
             tween.Play();
-        
     }
 }

@@ -29,9 +29,7 @@ public class GameMaster : MonoBehaviour
         if(currentGameState == GameState.ƒvƒŒƒC’†)
         {
             CountDown();
-        }
-            //Debug.Log(counttimer);
-        
+        }       
     }
     void CountDown()
     {
@@ -55,7 +53,6 @@ public class GameMaster : MonoBehaviour
                 currentGameState = GameState.ˆÚ“®’†;
             }
             move.ResumeMove();
-
             Debug.Log(currentGameState);
             timer = limitTimer;
         }

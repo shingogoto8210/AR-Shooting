@@ -1144,8 +1144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03673448b2311341a93badce0ad59a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 3
-  limitTimer: 3
+  timer: 15
+  limitTimer: 15
   isPlaying: 0
   score: 0
   currentGameState: 0
