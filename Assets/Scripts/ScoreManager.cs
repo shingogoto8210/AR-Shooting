@@ -10,11 +10,11 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
-        scoreText.text = gameMaster.score.ToString();
+        scoreText.text = GameMaster.score.ToString();
     }
 
     void Update()
     {
-        scoreText.text = gameMaster.score.ToString();
+        scoreText.text = GameMaster.score.ToString();
     }
 }

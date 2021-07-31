@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -8,21 +9,22 @@ public class GameMaster : MonoBehaviour
     public float timer;
     public float limitTimer;
     public bool isPlaying;
-    public int score;
+    public static int score;
     public GameState currentGameState;
     public RailMoveController move;
 
     void Start()
     {
-        //isPlaying = true;
+        isPlaying = false;
         currentGameState = GameState.€”õ’†;
         timer = limitTimer;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isPlaying == false)
         {
+            isPlaying = true;
             move.Move();
             currentGameState = GameState.ˆÚ“®’†;
         }
@@ -46,20 +48,27 @@ public class GameMaster : MonoBehaviour
             if(move.isLast == true)
             {
                 currentGameState = GameState.ƒQ[ƒ€I—¹;
+                isPlaying = false;
+                SceneManager.LoadScene("Result");
             }
             //isPlaying = false;
             else if (move.isLast == false)
             {
+                move.ResumeMove();
+                timer = limitTimer;
                 currentGameState = GameState.ˆÚ“®’†;
             }
-            move.ResumeMove();
             Debug.Log(currentGameState);
-            timer = limitTimer;
         }
     }
 
     public void Score(int point)
     {
         score += point;
+    }
+
+    public static int GetScore()
+    {
+        return score;
     }
 }
